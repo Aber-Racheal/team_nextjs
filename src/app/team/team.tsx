@@ -1,6 +1,38 @@
-'use client';
-
+"use client"
 import React, { useState } from 'react';
+import Image from 'next/image';
+
+interface TeamMemberProps {
+  name: string;
+  quote: string;
+  image: string;
+}
+
+const TeamMember: React.FC<TeamMemberProps> = ({ name, quote, image }) => {
+  const [isHovered, setIsHovered] = useState(false);
+
+  return (
+    <div
+      className="relative w-48 h-48 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-3xl overflow-hidden cursor-pointer"
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
+    >
+      <Image
+        src={`/Images/${image}`}
+        alt={name}
+        layout="fill"  // This makes the image fill its parent container
+        objectFit="cover" // This ensures the image covers the container
+        className="w-full h-full" // Ensure the image fills its container
+      />
+      {isHovered && (
+        <div className="absolute inset-0 bg-custom-orange bg-opacity-100 flex flex-col items-center justify-center p-2 text-center">
+          <p className="font-bold mb-1 text-white text-custom-30">{name}</p>
+          <p className="text-white text-custom-20">{quote}</p>
+        </div>
+      )}
+    </div>
+  );
+};
 
 const teamMembers = [
   { name: 'Racheal Aber', quote: "I don't always test my code, but when I do, I do it in production.", image: 'racheal-aber.jpg' },
@@ -10,31 +42,7 @@ const teamMembers = [
   { name: 'Yvonne Martin', quote: "I am a Software Engineer, the only dates I get are updates", image: 'yvonne-martin.jpg' },
 ];
 
-const TeamMember = ({ name, quote, image }) => {
-  const [isHovered, setIsHovered] = useState(false);
-
-  return (
-    <div
-      className="relative w-48 h-48 sm:w-48 sm:h-48 md:w-56 md:h-56 rounded-3xl overflow-hidden cursor-pointer"
-      onMouseEnter={() => setIsHovered(true)}
-      onMouseLeave={() => setIsHovered(false)}
-    >
-      <img
-        src={`/Images/${image}`}
-        alt={name}
-        className="w-full h-full object-cover"
-      />
-      {isHovered && (
-        <div className="absolute inset-0 bg-custom-orange bg-opacity-100 flex flex-col items-center justify-center p-2 text-center">
-          <p className="font-bold mb-1 text-white text-custom-30">{name}</p>
-          <p className=" text-white text-custom-20">{quote}</p>
-        </div>
-      )}
-    </div>
-  );
-};
-
-const TeamSection = () => {
+const TeamSection: React.FC = () => {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-start sm:justify-center px-4 py-8 overflow-y-auto sm:overflow-hidden">
       <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-teal-500 text-custom-50 text-custom-teal">
