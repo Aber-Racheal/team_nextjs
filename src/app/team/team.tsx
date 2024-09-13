@@ -18,11 +18,11 @@ const TeamMember: React.FC<TeamMemberProps> = ({ name, quote, image }) => {
       onMouseLeave={() => setIsHovered(false)}
     >
       <Image
-        src={`/Images/${image}`}
+        src={`/Images/${image}`} // Ensure the path is correct
         alt={name}
-        layout="fill"  // This makes the image fill its parent container
-        objectFit="cover" // This ensures the image covers the container
-        className="w-full h-full" // Ensure the image fills its container
+        width={200} // Adjust width according to your design
+        height={200} // Adjust height according to your design
+        className="w-full h-full object-cover"
       />
       {isHovered && (
         <div className="absolute inset-0 bg-custom-orange bg-opacity-100 flex flex-col items-center justify-center p-2 text-center">
@@ -50,21 +50,14 @@ const TeamSection: React.FC = () => {
         <span className="block text-xl sm:text-2xl text-teal-500 font-light">Meet the Minds Shaping LANDVISTA</span>
       </h2>
       <div className="flex flex-col sm:grid sm:grid-cols-3 sm:grid-rows-3 gap-8 w-full max-w-5xl">
-        <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-2 flex justify-center">
-          <TeamMember {...teamMembers[0]} />
-        </div>
-        <div className="sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2 flex justify-center">
-          <TeamMember {...teamMembers[1]} />
-        </div>
-        <div className="sm:col-start-2 sm:col-end-3 sm:row-start-2 sm:row-end-3 flex justify-center">
-          <TeamMember {...teamMembers[2]} />
-        </div>
-        <div className="sm:col-start-1 sm:col-end-2 sm:row-start-3 sm:row-end-4 flex justify-center">
-          <TeamMember {...teamMembers[3]} />
-        </div>
-        <div className="sm:col-start-3 sm:col-end-4 sm:row-start-3 sm:row-end-4 flex justify-center">
-          <TeamMember {...teamMembers[4]} />
-        </div>
+        {teamMembers.map((member, index) => (
+          <div
+            key={index}
+            className={`sm:col-start-${(index % 3) + 1} sm:col-end-${(index % 3) + 2} sm:row-start-${Math.floor(index / 3) + 1} sm:row-end-${Math.floor(index / 3) + 2} flex justify-center`}
+          >
+            <TeamMember {...member} />
+          </div>
+        ))}
       </div>
     </div>
   );
