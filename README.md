@@ -12,7 +12,7 @@ This project utilizes Next.js and Tailwind CSS to create a visually engaging sec
 
 
 Check out the live demo of the project at: 
-https://team-nextjs.vercel.app/
+[https://team-nextjs.vercel.app/](https://team-nextjs.vercel.app/)
 
 **Features**
 
