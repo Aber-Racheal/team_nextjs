@@ -42,7 +42,8 @@ const teamMembers = [
   { name: 'Yvonne Martin', quote: "I am a Software Engineer, the only dates I get are updates", image: 'yvonne-martin.jpg' },
 ];
 
-const TeamSection: React.FC = () => {
+
+const TeamSection = () => {
   return (
     <div className="w-full min-h-screen flex flex-col items-center justify-start sm:justify-center px-4 py-8 overflow-y-auto sm:overflow-hidden">
       <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 text-teal-500 text-custom-50 text-custom-teal">
@@ -50,14 +51,21 @@ const TeamSection: React.FC = () => {
         <span className="block text-xl sm:text-2xl text-teal-500 font-light">Meet the Minds Shaping LANDVISTA</span>
       </h2>
       <div className="flex flex-col sm:grid sm:grid-cols-3 sm:grid-rows-3 gap-8 w-full max-w-5xl">
-        {teamMembers.map((member, index) => (
-          <div
-            key={index}
-            className={`sm:col-start-${(index % 3) + 1} sm:col-end-${(index % 3) + 2} sm:row-start-${Math.floor(index / 3) + 1} sm:row-end-${Math.floor(index / 3) + 2} flex justify-center`}
-          >
-            <TeamMember {...member} />
-          </div>
-        ))}
+        <div className="sm:col-start-1 sm:col-end-2 sm:row-start-1 sm:row-end-2 flex justify-center">
+          <TeamMember {...teamMembers[0]} />
+        </div>
+        <div className="sm:col-start-3 sm:col-end-4 sm:row-start-1 sm:row-end-2 flex justify-center">
+          <TeamMember {...teamMembers[1]} />
+        </div>
+        <div className="sm:col-start-2 sm:col-end-3 sm:row-start-2 sm:row-end-3 flex justify-center">
+          <TeamMember {...teamMembers[2]} />
+        </div>
+        <div className="sm:col-start-1 sm:col-end-2 sm:row-start-3 sm:row-end-4 flex justify-center">
+          <TeamMember {...teamMembers[3]} />
+        </div>
+        <div className="sm:col-start-3 sm:col-end-4 sm:row-start-3 sm:row-end-4 flex justify-center">
+          <TeamMember {...teamMembers[4]} />
+        </div>
       </div>
     </div>
   );
